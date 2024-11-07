@@ -1,0 +1,47 @@
+PT-BR
+
+Para começar vamos precisar de algumas ferramentas instaladas no seu local:
+
+Docker
+Docker-compose
+Terrafom
+AWS-CLI
+
+Como subir a instancia do local-stack:
+
+Vamos entrar na pasta docker com o comando:
+
+cd docker/
+
+Vamos executar o seguinte comando:
+
+docker-compose up
+
+Com isso vamos subir a instancia do nosso container com o Localstack.
+
+
+Como configurar a AWS dentro do nosso localStack:
+
+Vamos entrar na pasta com os nossos arquivos de terraform:
+
+cd terraform
+
+Vamos usar o comando:
+
+terraform init
+
+Este comando vai fazer o setup das nossas configs da AWS.
+
+Com isso, vamos executar o comand:
+
+Terraform Apply
+
+Esse comando vai criar todos os nossos recursos. Nesse exemplo, temos o SNS e o S3. APos apertar ENTER, vamos escrever yes e depois disso está tudo pronto.
+
+Para validar o acesso, precisamos ter um usuario criado para o localstack apontando para a url do nosso docker. Para testar se o serviço está ok, basta bater nele com essas urls e esperar um 200;
+
+S3:
+$ aws --endpoint-url=http://localhost:4566 s3 ls --profile localstack    
+
+SNS:
+$ aws --endpoint-url=http://localhost:4566 sns  list-topics --profile localstack    
